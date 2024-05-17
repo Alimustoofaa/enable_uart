@@ -22,8 +22,8 @@ else
     exit 1
 fi
 
-# 3. Create disable_uart.service
-tee /etc/systemd/system/disable_uart.service > /dev/null <<EOF
+# 3. Create enable_uart.service
+tee /etc/systemd/system/enable_uart.service > /dev/null <<EOF
 [Unit]
 Description=Configure UART at startup
 After=default.target
@@ -39,9 +39,9 @@ EOF
 
 # Check if service file creation was successful
 if [ $? -eq 0 ]; then
-    echo "disable_uart.service created successfully."
+    echo "enable_uart.service created successfully."
 else
-    echo "Failed to create disable_uart.service. Exiting."
+    echo "Failed to create enable_uart.service. Exiting."
     exit 1
 fi
 
@@ -49,7 +49,7 @@ fi
 systemctl daemon-reload
 
 # Enable the service
-systemctl enable disable_uart.service
+systemctl enable enable_uart.service
 
 # Check if service was enabled successfully
 if [ $? -eq 0 ]; then
